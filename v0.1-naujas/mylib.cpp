@@ -1,6 +1,5 @@
 ﻿#include "funkcijos.h"
 #include "meniu.h"
-#include "mediana.h"
 
 MeniuAts meniu()  {    // meniu funkcija grąžinanti naudotojo pasirinkimus
     int ivestis;    // naudotojo įvestis
