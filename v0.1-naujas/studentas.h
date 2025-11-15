@@ -33,6 +33,7 @@ public:
     inline const std::string pavarde() const { return pavarde_; }
     inline int egzas() const { return egzas_; }
     inline const std::vector<int> pazymiai() const { return pazymiai_; }
+    inline std::vector<int>& pazymiai() { return pazymiai_; }
     inline float rez() const { return rez_; }
     inline float mediana() const { return mediana_; }
 

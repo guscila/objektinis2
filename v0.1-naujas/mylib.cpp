@@ -97,7 +97,10 @@ Studentas ivesk() { // studentų įvesties fukcija
     mt19937 gen(rd());  // "random" engine kodas
     uniform_int_distribution<> dist(1, 10); // random funkcijos algoritmo ribos (1-10)
     cout << "Iveskite studento varda ir pavarde: ";
-    cin >> laik.vardas >> laik.pavarde;
+    string vardas, pavarde;
+    cin >> vardas >> pavarde;
+    laik.setVardas(vardas);
+    laik.setPavarde(pavarde);
     cout << string(50, '-') << endl;
     cout << "1 - ivesti namu darbu pazymius ir egzamino bala rankiniu budu;\n";
     cout << "2 - studento pazymius sugeneruoti atsitiktinai;\n";
@@ -111,7 +114,7 @@ Studentas ivesk() { // studentų įvesties fukcija
             try {
                 paz = stoi(ivestis);    // įvestis paverčiama iš string į int tipo kintamąjį
                 if (paz >= 1 && paz <= 10) {  // patikra, kad įvestas pažymys yra dešimbalėje skalėje
-                    laik.pazymiai.push_back(paz);
+                    laik.pazymiai().push_back(paz);
                     sum += paz;
                 }
                 else {
@@ -129,26 +132,25 @@ Studentas ivesk() { // studentų įvesties fukcija
             cout << "Neteisinga ivestis. Iveskite egzamino bala 1-10 skaleje: ";
             egzas = tikNr();    // teigiamo skaičiaus funkcijos iškvietimas
         }
-        laik.egzas = egzas;
+        laik.setEgzas(egzas);
     }
     else if (pasirinkimas == 2) {  // veiksmai, jei naudotojas pasirenka, kad duomenys būtų generuojami atsitiktinai
-        int nd; // nd - studento pazymiu kiekis;
         cout << "Iveskite kiek studento namu darbu pazymiu norite atsitiktinai sugeneruoti: ";
         nd = tikNr();   // teigiamo skaičiaus funkcijos iškvietimas
         for (int i = 0; i < nd; i++) {  // veiksmai generuojant studento namų darbų pažymius atsitiktinai
             paz = dist(gen);
-            laik.pazymiai.push_back(paz);
+            laik.pazymiai().push_back(paz);
             sum += paz;
         }
-        laik.egzas = dist(gen); // studento egzamino balo sugeneravimas atsitiktinai
+        laik.setEgzas(dist(gen)); // studento egzamino balo sugeneravimas atsitiktinai
     }
-    if (laik.pazymiai.empty()) {
-        laik.rez = laik.egzas * 0.6;    // studento galutinio vidurkio apskaičiavimas
-        laik.mediana = 0;
+    if (laik.pazymiai().empty()) {
+        laik.setRez(laik.egzas() * 0.6);    // studento galutinio vidurkio apskaičiavimas
+        laik.setMediana(0.0f);
     }
     else {
-        laik.rez = laik.egzas * 0.6 + double(sum) / double(laik.pazymiai.size()) * 0.4; // studento galutinio vidurkio apskaičiavimas
-        laik.mediana = mediana(laik.pazymiai);  // medianos apskaičiavimo funkcijos iškvietimas
+        laik.setRez(laik.egzas() * 0.6 + double(sum) / double(laik.pazymiai().size()) * 0.4); // studento galutinio vidurkio apskaičiavimas
+        laik.setMediana (mediana(laik.pazymiai()));  // medianos apskaičiavimo funkcijos iškvietimas
     }
     return laik;
 }
@@ -172,23 +174,28 @@ void NuskaitymasIsFailo(cont& grupe, string name) { // funkcija duomenų nuskait
         pos += 2;
     }
     while (getline(df, line)) {
+        string vardas, pavarde;
         stringstream ss(line);  // nuskaityta eilutė padalinama į word objektus
-        laik.pazymiai.clear();  // pažymių vektoriaus išvalymas
-        ss >> laik.vardas >> laik.pavarde;  // nuskaitomi studento vardas ir pavardė
+        laik.pazymiai().clear();  // pažymių vektoriaus išvalymas
+        ss >> vardas >> pavarde;  // nuskaitomi studento vardas ir pavardė
+        laik.setVardas(vardas);
+        laik.setPavarde(pavarde);
         int sum = 0, paz;   // sum - studento pažymių suma; paz - įvedamas pažymys
         for (int i = 0; i < nd; i++) {  // nuskaitomi namų darbų pažymiai
             ss >> paz;
-            laik.pazymiai.push_back(paz);
+            laik.pazymiai().push_back(paz);
             sum += paz;
         }
-        ss >> laik.egzas;   // nuskaitomas egzamino balas
-        if (laik.pazymiai.empty()) {
-            laik.rez = laik.egzas * 0.6;    // studento galutinio vidurkio apskaičiavimas
-            laik.mediana = 0;
+        int egzas;
+        ss >> egzas;   // nuskaitomas egzamino balas
+        laik.setEgzas(egzas);
+        if (laik.pazymiai().empty()) {
+            laik.setRez(laik.egzas() * 0.6);    // studento galutinio vidurkio apskaičiavimas
+            laik.setMediana(0.0f);
         }
         else {
-            laik.rez = laik.egzas * 0.6 + double(sum) / double(laik.pazymiai.size()) * 0.4; // studento galutinio vidurkio apskaičiavimas
-            laik.mediana = mediana(laik.pazymiai);  // medianos apskaičiavimo funkcijos iškvietimas
+            laik.setRez(laik.egzas() * 0.6 + double(sum) / double(laik.pazymiai().size()) * 0.4); // studento galutinio vidurkio apskaičiavimas
+            laik.setMediana(mediana(laik.pazymiai()));  // medianos apskaičiavimo funkcijos iškvietimas
         }
         grupe.push_back(laik);  // studento duomenų įdėjimas į vektorių
     }
@@ -203,7 +210,7 @@ void IsvedimasIFaila(cont& grupe, string name) {    // funkcija rezultatų išve
     cout << string(50, '-') << endl;
     rf << left << setw(17) << "Vardas" << setw(17) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
     for (auto temp : grupe) // studentų duomenų įrašymas į failą
-        rf << left << setw(17) << temp.vardas << setw(17) << temp.pavarde << setw(20) << fixed << setprecision(2) << temp.rez << setw(20) << fixed << setprecision(2) << temp.mediana << endl;
+        rf << left << setw(17) << temp.vardas() << setw(17) << temp.pavarde() << setw(20) << fixed << setprecision(2) << temp.rez() << setw(20) << fixed << setprecision(2) << temp.mediana() << endl;
     rf.close();
     cout << "Rezultatai sekmingai irasyti i faila '" << name << ".txt' aplanke 'testavimo failai'." << endl;
 }
@@ -212,7 +219,7 @@ template<typename cont>
 void IsvedimasITerminala(cont& grupe) { // funckija rezultatų išvedimui į terminalą
     cout << left << setw(17) << "Vardas" << setw(17) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << setw(20) << "Adresas" << endl;
     for (const auto& temp : grupe) { // studentų duomenų išvedimas į terminalą
-        cout << left << setw(17) << temp.vardas << setw(17) << temp.pavarde << setw(20) << fixed << setprecision(2) << temp.rez << setw(20) << fixed << setprecision(2) << temp.mediana << static_cast<const void*>(&temp) << endl;
+        cout << left << setw(17) << temp.vardas() << setw(17) << temp.pavarde() << setw(20) << fixed << setprecision(2) << temp.rez() << setw(20) << fixed << setprecision(2) << temp.mediana() << static_cast<const void*>(&temp) << endl;
     }
 }
 
@@ -263,10 +270,10 @@ template<typename cont>
 void StudentuKategorizacija(cont& grupe, cont& vargsiukai, cont& kietiakai, int strategija) {   // studentų kategorizacijos funkcija į Vargšiukus ir Kietiakus
     if (strategija == 1) {  // Strategija 1
         for (auto temp : grupe) {   // studentų rūšiavimas į vargšiukus ir kietiakus
-            if (temp.rez < 5.0) {   // atrenkami "vargšiukai"
+            if (temp.rez() < 5.0) {   // atrenkami "vargšiukai"
                 vargsiukai.push_back(temp);
             }
-            else if (temp.rez >= 5.0) { // atrenkami "kietiakai
+            else if (temp.rez() >= 5.0) { // atrenkami "kietiakai
                 kietiakai.push_back(temp);
             }
         }
@@ -274,7 +281,7 @@ void StudentuKategorizacija(cont& grupe, cont& vargsiukai, cont& kietiakai, int 
     else if (strategija == 2) { // Strategija 2
         if constexpr (std::is_same_v<cont, std::list<Studentas>>) { // veiksmai su list konteineriu
             for (auto it = grupe.begin(); it != grupe.end();) {
-                if (it->rez < 5.0) {    // atrenkami "vargšiukai"
+                if (it->rez() < 5.0) {    // atrenkami "vargšiukai"
                     vargsiukai.push_back(*it);  // "vargšiukai" įrašomi į naują konteinerį
                     it = grupe.erase(it); // "vargšiukai" pašalinami iš originalaus konteinerio
                 }
@@ -284,7 +291,7 @@ void StudentuKategorizacija(cont& grupe, cont& vargsiukai, cont& kietiakai, int 
         else {  // veiksmai su vector konteineriu
             auto it = grupe.begin();
             while (it != grupe.end()) {
-                if (it->rez < 5.0) {    // atrenkami "vargšiukai"
+                if (it->rez() < 5.0) {    // atrenkami "vargšiukai"
                     vargsiukai.push_back(std::move(*it));   // "vargšiukai" perkeliami į naują konteinerį
                     *it = std::move(grupe.back());  //
                     grupe.pop_back();               // užpildoma buvusi "vargšiuko" vieta
@@ -294,7 +301,7 @@ void StudentuKategorizacija(cont& grupe, cont& vargsiukai, cont& kietiakai, int 
         }
     }
     else if (strategija == 3) { // Strategija 3
-        auto kietas = [](const Studentas& stud) { return stud.rez >= 5.0; };
+        auto kietas = [](const Studentas& stud) { return stud.rez() >= 5.0; };
         auto atskirtis = std::partition(grupe.begin(), grupe.end(), kietas);    // randama atskirtis tarp "kietiakų" konteinerio priekyje ir "vargšiukų" konteinerio gale
         if constexpr (std::is_same_v<cont, std::list<Studentas>>) { // veiksmai su list konteineriu
             vargsiukai.splice(vargsiukai.end(), grupe, atskirtis, grupe.end()); // "vargšiukai atskiriami į kitą konteinerį
@@ -358,37 +365,37 @@ void StudentuRusiavimas(cont& grupe, string name) {    // studentų rūšiavimo 
     Timer rusiavimas;
     if constexpr (is_same_v<cont, list<Studentas>>) {  // veiksmai su list konteineriu
         if (ivestis == 1) {
-            grupe.sort([](auto& stud1, auto& stud2) { return stud1.vardas < stud2.vardas; });   // veiksmai studentus surušiuojant abecelės didėjimo tvarka
+            grupe.sort([](auto& stud1, auto& stud2) { return stud1.vardas() < stud2.vardas(); });   // veiksmai studentus surušiuojant abecelės didėjimo tvarka
         }
         else if (ivestis == 2) {
-            grupe.sort([](auto& stud1, auto& stud2) { return stud1.vardas > stud2.vardas; });   // veiksmai studentus surušiuojant abecelės mažėjimo tvarka
+            grupe.sort([](auto& stud1, auto& stud2) { return stud1.vardas() > stud2.vardas(); });   // veiksmai studentus surušiuojant abecelės mažėjimo tvarka
         }
         else if (ivestis == 3) {
-            grupe.sort([](auto& stud1, auto& stud2) { return stud1.rez < stud2.rez;    });  // veiksmai studentus surušiuojant pagal galutinį vidurkį didėjimo tvarka
+            grupe.sort([](auto& stud1, auto& stud2) { return stud1.rez() < stud2.rez();    });  // veiksmai studentus surušiuojant pagal galutinį vidurkį didėjimo tvarka
         }
         else if (ivestis == 4) {
-            grupe.sort([](auto& stud1, auto& stud2) { return stud1.rez > stud2.rez;    });  // veiksmai studentus surušiuojant pagal galutinį vidurkį mažėjimo tvarka
+            grupe.sort([](auto& stud1, auto& stud2) { return stud1.rez() > stud2.rez();    });  // veiksmai studentus surušiuojant pagal galutinį vidurkį mažėjimo tvarka
         }
     }
     else {  // veiksmai su vector konteineriu
         if (ivestis == 1) {
             stable_sort(grupe.begin(), grupe.end(), [](const Studentas& stud1, const Studentas& stud2) {   // veiksmai studentus surušiuojant abecelės didėjimo tvarka
-                return stud1.vardas < stud2.vardas;
+                return stud1.vardas() < stud2.vardas();
                 });
         }
         else if (ivestis == 2) {
             stable_sort(grupe.begin(), grupe.end(), [](const Studentas& stud1, const Studentas& stud2) {   // veiksmai studentus surušiuojant abecelės mažėjimo tvarka
-                return stud1.vardas > stud2.vardas;
+                return stud1.vardas() > stud2.vardas();
                 });
         }
         else if (ivestis == 3) {
             stable_sort(grupe.begin(), grupe.end(), [](const Studentas& stud1, const Studentas& stud2) {   // veiksmai studentus surušiuojant pagal galutinį vidurkį didėjimo tvarka
-                return stud1.rez < stud2.rez;
+                return stud1.rez() < stud2.rez();
                 });
         }
         else if (ivestis == 4) {
             stable_sort(grupe.begin(), grupe.end(), [](const Studentas& stud1, const Studentas& stud2) {   // veiksmai studentus surušiuojant pagal galutinį vidurkį mažėjimo tvarka
-                return stud1.rez > stud2.rez;
+                return stud1.rez() > stud2.rez();
                 });
         }
     }
