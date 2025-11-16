@@ -15,7 +15,6 @@ private:
 public:
     // Konstruktoriai:
     Studentas() : egzas_(0), rez_(0.0f), mediana_(0.0f) {}
-    Studentas(std::istream& is) { read(is); }
 
     // Destruktorius:
     ~Studentas() = default;
@@ -36,5 +35,4 @@ public:
     inline void setPazymiai(const std::vector<int>& nd) { pazymiai_ = nd; }
     inline void setRez(float r) { rez_ = r; }
     inline void setMediana(float m) { mediana_ = m; }
-    std::istream& read(std::istream& is);
 };
