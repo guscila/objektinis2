@@ -4,15 +4,7 @@
 #include <vector>
 #include <iostream>
 
-//struct Studentas {  // studento struktūra
-//    std::string vardas, pavarde;
-//    std::vector<int> pazymiai;
-//    int egzas;
-//    float rez;
-//    float mediana;
-//};
-
-class Studentas {
+class Studentas {   // Studentas klasė
 private:
     std::string vardas_;
     std::string pavarde_;
