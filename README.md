@@ -1,5 +1,5 @@
-# 1Lab.
-v1.0 release
+# 2Lab.
+v1.1 release
 ## Programos aprašymas
 Programa leidžia naudotojui įvesti rankiniu būdu arba nuskaityti studentų duomenis ( vardą ir pavardę, atliktų namų darbų rezultatus (10-balėje sistemoje), egzamino balą ) ir suskaičiuoja galutinį balą pagal formulę ( *pav.1* ). Visos programos veikimo metu naudotojas gali pasirinkti kokio tipo ( vector ar list ) konteineris bus naudojamas. Įvesdamas duomenis rankiniu būdu naudotojas gali namų darbų ir egzamino rezultatuts įvesti arba atsitiktinai sugeneruoti. Naudotojui taip pat leidžiama sugeneruoti failą su studentų vardais, namų darbų ir egzamino rezultatais, kurį vėliau gali naudoti programos testavimo funkcijos metu. Failų testavimo metu, naudotojui pasirinkus failą, yra atliekama greičio spartos analizė naudojant vieną iš trijų studentų kategorizacijos strategijų bei suteikiant naudotojui pasirinkimą kokia tvarka bus surūšiuoti studentų *'Kietiakų'<sup>1</sup>* ir *'Vargšiukų'<sup>2</sup>* failai. Rezultatai yra išvedami į terminalą arba į failą priklausomai nuo pasirinktos funkcijos. Rezultatų, failų ir generacijos formatai yra aprašyti žemiau.
 ```
@@ -25,7 +25,7 @@ cmake --build . --config Release
 ```
 4. Paleidžiame sukurtą programą:
 ```
-.\v1.0.exe
+.\v1.1.exe
 ```
 #### Arba galite paleisti šiame projekte prikabintą `run.bat` failą:
 ```run.bat``` failą galite paleisti paspaudę ant jo du kartus arba terminale įvedę komandą:
@@ -149,9 +149,9 @@ HDD: SSD 238 GB <br>
 |                        | O3           | 354 KB                 | 13,066 s            | 0,359 s                 | 2,012 s                             | 1,387 s                              | 20,803 s                                       | 8,624 s                                        |
 
 ```
-Studentų kategorizacijos strategijų testavimas buvo atliktas naudojant v1.0 realizaciją gauti struct Studentas duomenims, o v1.1 realizaciją - class Studentas duomenims.
+Studento struct is class palyginimas buvo atliktas naudojant v1.0 realizaciją gauti struct Studentas duomenims, o v1.1 realizaciją - class Studentas duomenims.
 Abiejų testavimų atveju buvo naudota Strategija 3 bei vector tipo konteineris.
-Visi testavimai buvo vykdomi naudojant 'Release' funkciją Visual Studio programoje, tačiau lėtesnė greičio sparta gali būti kompiuterio fone vykdomų programų pasekmė.
+Visi testavimai buvo vykdomi naudojant 'Release' funkciją Visual Studio programoje Windows operacinėje sistemoje, tačiau lėtesnė greičio sparta gali būti kompiuterio fone vykdomų programų pasekmė.
 ```
 ### Studentas struktūros ir klasės palyginimo išvados:
 `struct` tipas beveik visais aspektais yra greitesnis už `class` tipą. Optimizacija O2 yra optimiškiausia greičio spartos aspektu. `.exe` failo dydis progresyviai didėja su naudojama optimizacija, tačiau nepriklauso nuo testuojamų failų dydžio.
