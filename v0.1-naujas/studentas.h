@@ -13,8 +13,33 @@ private:
     float rez_;
     float mediana_;
 public:
-    // Konstruktorius:
-    Studentas() : egzas_(0), rez_(0.0f), mediana_(0.0f) {}
+    // Konstruktoriai:
+    Studentas() :
+        egzas_(0),
+        rez_(0.0f),
+        mediana_(0.0f) {}
+
+    // Kopijavimo konstruktorius:
+    Studentas(const Studentas& copy):
+        vardas_(copy.vardas_),
+        pavarde_(copy.pavarde_),
+        pazymiai_(copy.pazymiai_),
+        egzas_(copy.egzas_),
+        rez_(copy.rez_),
+        mediana_(copy.mediana_) {}
+
+    // Priskyrimo operatorius
+    Studentas& operator = (const Studentas& copy) {
+        if (this != &copy) {
+            vardas_ = copy.vardas_;
+            pavarde_ = copy.pavarde_;
+            pazymiai_ = copy.pazymiai_;
+            egzas_ = copy.egzas_;
+            rez_ = copy.rez_;
+            mediana_ = copy.mediana_;
+        }
+        return *this;
+    }
 
     // Destruktorius:
     ~Studentas() {
@@ -42,4 +67,8 @@ public:
     inline void setPazymiai(const std::vector<int>& nd) { pazymiai_ = nd; }
     inline void setRez(float r) { rez_ = r; }
     inline void setMediana(float m) { mediana_ = m; }
+
+    // Operatoriai:
+    friend std::ostream& operator<<(std::ostream out, const Studentas& stud);
+    friend std::istream& operator>>(std::istream in, const Studentas& stud);
 };
