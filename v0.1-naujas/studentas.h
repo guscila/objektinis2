@@ -13,11 +13,18 @@ private:
     float rez_;
     float mediana_;
 public:
-    // Konstruktoriai:
+    // Konstruktorius:
     Studentas() : egzas_(0), rez_(0.0f), mediana_(0.0f) {}
 
     // Destruktorius:
-    ~Studentas() = default;
+    ~Studentas() {
+        vardas_.clear();
+        pavarde_.clear();
+        pazymiai_.clear();
+        egzas_ = 0;
+        rez_ = 0.0f;
+        mediana_ = 0.0f;
+    }
 
     // Geter'iai:
     inline const std::string vardas() const { return vardas_; }
