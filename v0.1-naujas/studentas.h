@@ -28,7 +28,7 @@ public:
         rez_(copy.rez_),
         mediana_(copy.mediana_) {}
 
-    // Priskyrimo operatorius
+    // Kopijavimo priskyrimo operatorius:
     Studentas& operator = (const Studentas& copy) {
         if (this != &copy) {
             vardas_ = copy.vardas_;
@@ -69,6 +69,6 @@ public:
     inline void setMediana(float m) { mediana_ = m; }
 
     // Operatoriai:
-    friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);
-    friend std::istream& operator>>(std::istream& in, Studentas& stud);
+    friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);  // išvedimo operatorius
+    friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties operatorius
 };

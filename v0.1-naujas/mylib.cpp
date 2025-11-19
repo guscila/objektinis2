@@ -2,12 +2,12 @@
 #include "meniu.h"
 
 // Operatorių aprašymas:
-std::ostream& operator<<(std::ostream& out, const Studentas& stud) {
+std::ostream& operator<<(std::ostream& out, const Studentas& stud) {    // išvedimo operatorius
     out << std::left << std::setw(17) << stud.vardas() << std::setw(17) << stud.pavarde() << std::setw(20) << std::fixed << std::setprecision(2) << stud.rez() << std::setw(20) << std::fixed << std::setprecision(2) << stud.mediana();
     return out;
 }
 
-std::istream& operator>>(std::istream& in, Studentas& stud) {
+std::istream& operator>>(std::istream& in, Studentas& stud) {   // įvesties operatorius
     std::string vardas, pavarde;
     if (in >> vardas >> pavarde) {
         stud.setVardas(vardas);
@@ -16,8 +16,7 @@ std::istream& operator>>(std::istream& in, Studentas& stud) {
     return in;
 }
 
-
-
+// Funkcijos:
 MeniuAts meniu()  {    // meniu funkcija grąžinanti naudotojo pasirinkimus
     int ivestis;    // naudotojo įvestis
     string name;
@@ -114,7 +113,7 @@ Studentas ivesk() { // studentų įvesties fukcija
     mt19937 gen(rd());  // "random" engine kodas
     uniform_int_distribution<> dist(1, 10); // random funkcijos algoritmo ribos (1-10)
     cout << "Iveskite studento varda ir pavarde: ";
-    cin >> laik;
+    cin >> laik;    // panaudojamas įvesties operatorius
     cout << string(50, '-') << endl;
     cout << "1 - ivesti namu darbu pazymius ir egzamino bala rankiniu budu;\n";
     cout << "2 - studento pazymius sugeneruoti atsitiktinai;\n";
@@ -190,7 +189,7 @@ void NuskaitymasIsFailo(cont& grupe, string name) { // funkcija duomenų nuskait
     while (getline(df, line)) {
         stringstream ss(line);  // nuskaityta eilutė padalinama į word objektus
         laik.pazymiai().clear();  // pažymių vektoriaus išvalymas
-        ss >> laik;
+        ss >> laik; // panaudojamas įvesties operatorius
         int sum = 0, paz;   // sum - studento pažymių suma; paz - įvedamas pažymys
         for (int i = 0; i < nd; i++) {  // nuskaitomi namų darbų pažymiai
             ss >> paz;
@@ -221,7 +220,7 @@ void IsvedimasIFaila(cont& grupe, string name) {    // funkcija rezultatų išve
     cout << string(50, '-') << endl;
     rf << left << setw(17) << "Vardas" << setw(17) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
     for (auto temp : grupe) // studentų duomenų įrašymas į failą
-        rf << temp << endl;
+        rf << temp << endl; // panaudojamas išvedimo operatorius
     cout << "Rezultatai sekmingai irasyti i faila '" << name << ".txt' aplanke 'testavimo failai'." << endl;
 }
 
@@ -229,7 +228,7 @@ template<typename cont>
 void IsvedimasITerminala(cont& grupe) { // funckija rezultatų išvedimui į terminalą
     cout << left << setw(17) << "Vardas" << setw(17) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << setw(20) << "Adresas" << endl;
     for (const auto& temp : grupe) { // studentų duomenų išvedimas į terminalą
-        cout << temp << static_cast<const void*>(&temp) << endl;
+        cout << temp << static_cast<const void*>(&temp) << endl;    // panaudojamas išvedimo operatorius
     }
 }
 
@@ -317,22 +316,14 @@ void FailuTestavimas(cont& grupe, cont& vargsiukai, cont& kietiakai, string name
     StudentuKategorizacija(grupe, vargsiukai, kietiakai, strategija);
     kategorizacija.save(" irasu failo kategorizacijos trukme: ", originalSize); // kategorizacijos trukmės išsaugojimas
     StudentuRusiavimas(vargsiukai, "Vargsiukai");
-    if (strategija == 1) {
-        StudentuRusiavimas(kietiakai, "Kietiakai");
-    }
-    else StudentuRusiavimas(grupe, "Kietiakai");
+    kietiakai = grupe;  // panaudojamas kopijavimo priskyrimo operatorius
+    StudentuRusiavimas(kietiakai, "Kietiakai");
     Timer isvedimasVarg;    // Vargšiukų išvedimo laikmačio pradžia
     IsvedimasIFaila(vargsiukai, "Vargsiukai");
     isvedimasVarg.save(" Vargsiukai isvedimo trukme: ", vargsiukai.size()); // Vargšiukų išvedimo trukmės išsaugojimas
     Timer isvedimasKiet;    // Kietiakų išvedimo laikmačio pradžia
-    if (strategija == 1) {
-        IsvedimasIFaila(kietiakai, "Kietiakai");
-    }
-    else IsvedimasIFaila(grupe, "Kietiakai");
-    if (strategija == 1) {
-        isvedimasKiet.save(" Kietiakai isvedimo trukme: ", kietiakai.size());    // Kietiakų išvedimo trukmės išsaugojimas
-    }
-    else     isvedimasKiet.save(" Kietiakai isvedimo trukme: ", grupe.size());    // Kietiakų išvedimo trukmės išsaugojimas
+    IsvedimasIFaila(kietiakai, "Kietiakai");
+    isvedimasKiet.save(" Kietiakai isvedimo trukme: ", kietiakai.size());    // Kietiakų išvedimo trukmės išsaugojimas
     cout << string(50, '-') << endl;
     cout << string(19, '-') << " Rezultatai " << string(19, '-') << endl;
     cout << '\t' << name << ".txt testavimo laikai:\n";
