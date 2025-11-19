@@ -1,5 +1,5 @@
 # 2Lab.
-v1.1 release
+v1.2 release
 ## Programos aprašymas
 Programa leidžia naudotojui įvesti rankiniu būdu arba nuskaityti studentų duomenis ( vardą ir pavardę, atliktų namų darbų rezultatus (10-balėje sistemoje), egzamino balą ) ir suskaičiuoja galutinį balą pagal formulę ( *pav.1* ). Visos programos veikimo metu naudotojas gali pasirinkti kokio tipo ( vector ar list ) konteineris bus naudojamas. Įvesdamas duomenis rankiniu būdu naudotojas gali namų darbų ir egzamino rezultatuts įvesti arba atsitiktinai sugeneruoti. Naudotojui taip pat leidžiama sugeneruoti failą su studentų vardais, namų darbų ir egzamino rezultatais, kurį vėliau gali naudoti programos testavimo funkcijos metu. Failų testavimo metu, naudotojui pasirinkus failą, yra atliekama greičio spartos analizė naudojant vieną iš trijų studentų kategorizacijos strategijų bei suteikiant naudotojui pasirinkimą kokia tvarka bus surūšiuoti studentų *'Kietiakų'<sup>1</sup>* ir *'Vargšiukų'<sup>2</sup>* failai. Rezultatai yra išvedami į terminalą arba į failą priklausomai nuo pasirinktos funkcijos. Rezultatų, failų ir generacijos formatai yra aprašyti žemiau.
 ```
@@ -39,18 +39,41 @@ Instaliacijos reikalavimai: C++17 kompiliatorius; CMake VERSION >=3.10;
 1. Įdiekite programą.
 2. Programai pradėjus veikti, naudotojas pasirenka iš Meniu norimą naudoti funkciją ir toliau seka Meniu aprašytais nurodymais.
 ### Meniu
-* 1 - Įvesti studentų duomenis rankiniu būdu;<br>
+* 1 - Įvesti studentų duomenis rankiniu būdu arba generuojant atsitiktinai;<br>
   * 1.1 - Pasirinkti norimą naudoti konteinerį ( vector arba list );<br>
+    * 1.1.1 - Įrašyti norimą įvesti studentų skaičių (n) ( rankiniu būdu );<br>
+      * 1.1.1.1 - Pasirinkti ar n-tojo studento duomenis įvesti rankiniu būdu (*kartojama n kartų*);<br>
+      *Rezultatai išvedami į terminalą.*
+      * 1.1.1.2 - Pasirinkti ar n-tojo studento duomenis sugeneruoti atsitiktinai (*kartojama n kartų*);<br>
+        * 1.1.1.2.1 - Įvesti norimą sugeneruoti namų darbų pažymių skaičių n-tajam studentui;<br>
+*Rezultatai išvedami į terminalą.*
 * 2 - Studentų duomenis nuskaityti iš failo;<br>
   * 2.1 - Pasirinkti norimą naudoti konteinerį ( vector arba list );<br>
     * 2.1.1 - Įvesti failo pavadinimą, kurį norite nuskaityti;<br>
+    *Rezultatai išvedami į failą "rezultatai.txt".*
 * 3 - Sugeneruoti failą su studentų duomenimis;<br>
   * 3.1 - Pasirinkti norimą naudoti konteinerį ( vector arba list );<br>
-    * 3.1.1 - Įvesti failo pavadinimą, kurį norite sugeneruoti;<br>
+    * 3.1.1 - Įvesti failo pavadinimą, kurį norite sugeneruoti (name);<br>
+      * 3.1.1 - Įvesti norimą sugeneruoti studentų skaičių faile ( rankiniu būdu );<br>
+        * 3.1.1.1 - Įvesti norimą sugeneruoti namų darbų pažymių skaičių kiekvienam studentui ( rankiniu būdu );<br>
+        *Failas "name.txt" sugeneruojamas ir išsaugomas aplanke "testavimo failai".*
 * 4 - Atlikti failų testavimą/sparto analizę;<br>
   * 4.1 - Pasirinkti norimą naudoti konteinerį ( vector arba list );<br>
     * 4.1.1 - Įvesti failo pavadinimą, kurį norite nuskaityti;<br>
       * 4.1.1.1 - Pasirinkti norimą naudoti studentų kategorizacijos strategiją (1, 2 arba 3);<br>
+        * 4.1.1.1 - Pasirinkti kaip surūšiuoti "Vargsiukai.txt" failą:<br>
+          * pagal varda/pavarde abeceles didejimo tvarka;<br>
+          * pagal varda/pavarde abeceles mazejimo tvarka;<br>
+          * pagal galutini vidurki didejimo tvarka;<br>
+          * pagal galutini vidurki mazejimo tvarka;\n";
+          * failo nerusiuoti;<br>
+        * 4.1.1.2 - Pasirinkti kaip surūšiuoti "Kietiakai.txt" failą:<br>
+          * pagal varda/pavarde abeceles didejimo tvarka;<br>
+          * pagal varda/pavarde abeceles mazejimo tvarka;<br>
+          * pagal galutini vidurki didejimo tvarka;<br>
+          * pagal galutini vidurki mazejimo tvarka;\n";
+          * failo nerusiuoti;<br>
+        *Ekrane pateikiami greičio spartos analizės rezultatai, o failai "Vargsiukai.txt" ir "Kietiakai.txt" išsaugojami į aplanką "testavimo failai".*
 3. Programa nustoja veikti, kai yra išvedami rezultatai arba išvedama teksinė/informacinė eilutė, po vieno iš šių įvykių paspaudus bet kurį klaviatūros klavišą programa užsidaro.
 
 ## Ankstesnės versijos
@@ -66,12 +89,18 @@ Versija v0.2 optimizuota ir papildyta galimybe pasirinkti norimą naudoti kontei
 Versija v0.3 optimizuota ir papildyta funkcija leidžiančiau naudotojui pasirinkti norimą naudoti studentų kategorizacijos strategiją; parengta įdiegimo instrukcija su `CMakeLists.txt` ir `run.bat`.
 #### [v1.1](https://github.com/guscila/objektinis2/tree/v1.1) pokyčiai:
 Versija v1.0 optimizuota, o Studento struktūra pakeista Studento klase, ko pasekoje atliktas kodo pritaikymas klasėms.
-```
-Dėl techninių nesklandumų įvykusių bandant nukopijuoti repozitoriją, naujojoje repozitorijoje išliko tik commit'ų istorija.
-```
+#### [v1.2](https://github.com/guscila/objektinis2/tree/v1.2) pokyčiai:
+Versija v1.1 optimizuota, realizuoti visi reikiami *"Rule of Three"* įvesties ir išvesties operatoriai; atliktas įvesties ir išvesties metotų perdengimas.
+## Programoje naudojami metodai
+### Įvesties metodai:
+ * ivesk() - rankiniu būdu arba atsitiktinai sugeneruojami naudotojo pasirinkti studentų duomenys naudojant `operator>>`;
+ * NuskaitymasIsFailo() - programa naudodama `operator>>` automatiškai nuskaito studentų duomenis iš failo;
+### Išvedimo metodai:
+ * IsvedimasIFaila() - programa naudodama `operator<<` išveda rezultatus į failą ( išvedimo formatai žemiau );
+ * IsvedimasITerminala() - programa naudodama `operator<<` išveda rezultatus į ekraną / terminalą ( išvedimo formatai žemiau );
 
 ## Programos failai
-### Failai
+### Failai:
 * v1.1 - pagrindinis programos failas;
 * funkcijos.h - programos funkcijų header'ių failas;
 * meniu.h - meniu struktūros failas;
@@ -85,6 +114,8 @@ Dėl techninių nesklandumų įvykusių bandant nukopijuoti repozitoriją, naujo
 | Vardas1 | Pavarde1 | ND1 | ND2 | ... | Egz. |
 |:--------|:---------|:----|:----|:----|:-----|
 | Jonas | Jonaitis | 8 | 9 | ... | 9 |
+#### Pavyzdys:
+![įvesties/generavimo failų pavyzdys](foto/)
 ##### Komentaras:
 ```
 Visi programa sugeneruoti failai buvo sukurti su 5 namų darbų pažymiais studentui.
@@ -93,10 +124,14 @@ Visi programa sugeneruoti failai buvo sukurti su 5 namų darbų pažymiais stude
 | Vardas1 | Pavarde1 | Galutinis(Vid.) | Galutinis(Med.) |
 |:--------|:---------|:----------------|:----------------|
 | Jonas | Jonaitis | 7.80 | 8.00 |
+#### Pavyzdys:
+![rezultatai.txt pavyzdys](foto/)
 ### Programos rezultatų terminale formatas:
 | Vardas1 | Pavarde1 | Galutinis(Vid.) | Galutinis(Med.) | Adresas |
 |:--------|:---------|:----------------|:----------------|:--------|
 | Jonas | Jonaitis | 7.80 | 8.00 | 0000000000A000A0 |
+#### Pavyzdys:
+![rezultatų terminale pavyzdys](foto/)
 ### Programos greičio spartos analizės rezultatų išvedimo formatas:
 ![rezultatųformatas](foto/rezultatupvz.png)
 ### Programa testuoti failai:
