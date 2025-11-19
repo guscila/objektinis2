@@ -91,6 +91,11 @@ Versija v0.3 optimizuota ir papildyta funkcija leidžiančiau naudotojui pasirin
 Versija v1.0 optimizuota, o Studento struktūra pakeista Studento klase, ko pasekoje atliktas kodo pritaikymas klasėms.
 #### [v1.2](https://github.com/guscila/objektinis2/tree/v1.2) pokyčiai:
 Versija v1.1 optimizuota, realizuoti visi reikiami *"Rule of Three"* įvesties ir išvesties operatoriai; atliktas įvesties ir išvesties metotų perdengimas.
+```c++
+// Operatoriai:
+friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);  // išvedimo operatorius
+friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties operatorius
+```
 ## Programoje naudojami metodai
 ### Įvesties metodai:
  * ivesk() - rankiniu būdu arba atsitiktinai sugeneruojami naudotojo pasirinkti studentų duomenys naudojant `operator>>`;
@@ -115,7 +120,7 @@ Versija v1.1 optimizuota, realizuoti visi reikiami *"Rule of Three"* įvesties i
 |:--------|:---------|:----|:----|:----|:-----|
 | Jonas | Jonaitis | 8 | 9 | ... | 9 |
 #### Pavyzdys:
-![įvesties/generavimo failų pavyzdys](foto/)
+![įvesties/generavimo failų pavyzdys](foto/nuskaitomo_failo_pvz.png)
 ##### Komentaras:
 ```
 Visi programa sugeneruoti failai buvo sukurti su 5 namų darbų pažymiais studentui.
@@ -125,13 +130,13 @@ Visi programa sugeneruoti failai buvo sukurti su 5 namų darbų pažymiais stude
 |:--------|:---------|:----------------|:----------------|
 | Jonas | Jonaitis | 7.80 | 8.00 |
 #### Pavyzdys:
-![rezultatai.txt pavyzdys](foto/)
+![rezultatai.txt pavyzdys](foto/rezultatai.txt_pvz.png)
 ### Programos rezultatų terminale formatas:
 | Vardas1 | Pavarde1 | Galutinis(Vid.) | Galutinis(Med.) | Adresas |
 |:--------|:---------|:----------------|:----------------|:--------|
 | Jonas | Jonaitis | 7.80 | 8.00 | 0000000000A000A0 |
 #### Pavyzdys:
-![rezultatų terminale pavyzdys](foto/)
+![rezultatų terminale pavyzdys](foto/terminalo_rezultatai_pvz.png)
 ### Programos greičio spartos analizės rezultatų išvedimo formatas:
 ![rezultatųformatas](foto/rezultatupvz.png)
 ### Programa testuoti failai:
