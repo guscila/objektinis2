@@ -1,6 +1,23 @@
 ﻿#include "funkcijos.h"
 #include "meniu.h"
 
+// Operatorių aprašymas:
+std::ostream& operator<<(std::ostream& out, const Studentas& stud) {
+    out << std::left << std::setw(17) << stud.vardas() << std::setw(17) << stud.pavarde() << std::setw(20) << std::fixed << std::setprecision(2) << stud.rez() << std::setw(20) << std::fixed << std::setprecision(2) << stud.mediana();
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, Studentas& stud) {
+    std::string vardas, pavarde;
+    if (in >> vardas >> pavarde) {
+        stud.setVardas(vardas);
+        stud.setPavarde(pavarde);
+    }
+    return in;
+}
+
+
+
 MeniuAts meniu()  {    // meniu funkcija grąžinanti naudotojo pasirinkimus
     int ivestis;    // naudotojo įvestis
     string name;
@@ -97,10 +114,7 @@ Studentas ivesk() { // studentų įvesties fukcija
     mt19937 gen(rd());  // "random" engine kodas
     uniform_int_distribution<> dist(1, 10); // random funkcijos algoritmo ribos (1-10)
     cout << "Iveskite studento varda ir pavarde: ";
-    string vardas, pavarde;
-    cin >> vardas >> pavarde;
-    laik.setVardas(vardas);
-    laik.setPavarde(pavarde);
+    cin >> laik;
     cout << string(50, '-') << endl;
     cout << "1 - ivesti namu darbu pazymius ir egzamino bala rankiniu budu;\n";
     cout << "2 - studento pazymius sugeneruoti atsitiktinai;\n";
@@ -174,12 +188,9 @@ void NuskaitymasIsFailo(cont& grupe, string name) { // funkcija duomenų nuskait
         pos += 2;
     }
     while (getline(df, line)) {
-        string vardas, pavarde;
         stringstream ss(line);  // nuskaityta eilutė padalinama į word objektus
         laik.pazymiai().clear();  // pažymių vektoriaus išvalymas
-        ss >> vardas >> pavarde;  // nuskaitomi studento vardas ir pavardė
-        laik.setVardas(vardas);
-        laik.setPavarde(pavarde);
+        ss >> laik;
         int sum = 0, paz;   // sum - studento pažymių suma; paz - įvedamas pažymys
         for (int i = 0; i < nd; i++) {  // nuskaitomi namų darbų pažymiai
             ss >> paz;
@@ -210,8 +221,7 @@ void IsvedimasIFaila(cont& grupe, string name) {    // funkcija rezultatų išve
     cout << string(50, '-') << endl;
     rf << left << setw(17) << "Vardas" << setw(17) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
     for (auto temp : grupe) // studentų duomenų įrašymas į failą
-        rf << left << setw(17) << temp.vardas() << setw(17) << temp.pavarde() << setw(20) << fixed << setprecision(2) << temp.rez() << setw(20) << fixed << setprecision(2) << temp.mediana() << endl;
-    rf.close();
+        rf << temp << endl;
     cout << "Rezultatai sekmingai irasyti i faila '" << name << ".txt' aplanke 'testavimo failai'." << endl;
 }
 
@@ -219,7 +229,7 @@ template<typename cont>
 void IsvedimasITerminala(cont& grupe) { // funckija rezultatų išvedimui į terminalą
     cout << left << setw(17) << "Vardas" << setw(17) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << setw(20) << "Adresas" << endl;
     for (const auto& temp : grupe) { // studentų duomenų išvedimas į terminalą
-        cout << left << setw(17) << temp.vardas() << setw(17) << temp.pavarde() << setw(20) << fixed << setprecision(2) << temp.rez() << setw(20) << fixed << setprecision(2) << temp.mediana() << static_cast<const void*>(&temp) << endl;
+        cout << temp << static_cast<const void*>(&temp) << endl;
     }
 }
 

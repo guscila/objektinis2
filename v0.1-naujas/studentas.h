@@ -13,7 +13,7 @@ private:
     float rez_;
     float mediana_;
 public:
-    // Konstruktoriai:
+    // Konstruktorius:
     Studentas() :
         egzas_(0),
         rez_(0.0f),
@@ -69,6 +69,6 @@ public:
     inline void setMediana(float m) { mediana_ = m; }
 
     // Operatoriai:
-    friend std::ostream& operator<<(std::ostream out, const Studentas& stud);
-    friend std::istream& operator>>(std::istream in, const Studentas& stud);
+    friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);
+    friend std::istream& operator>>(std::istream& in, Studentas& stud);
 };
