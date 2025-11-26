@@ -7,6 +7,10 @@ Programa leidžia naudotojui įvesti rankiniu būdu arba nuskaityti studentų du
 2 - Vargšiukas - tai studentas, kurio galutinis vidurkis < 5;
 ```
 *Pav.1:* ![pav.1](https://latex.codecogs.com/svg.image?&space;Galutinis=0.4*vidurkis&plus;0.6*egzaminas)<br>
+
+<details>
+  <summary><strong> Programos diegimo instrukcija </strong></summary>
+ 
 ## Programos diegimo instrukcija
 1. Nukopijuokite projekto direktoriją ir paruošiame "build" direktoriją, kur nukeliaus visi mūsų sukurti failai:
 ```
@@ -35,6 +39,11 @@ cmake --build . --config Release
 ```
 Instaliacijos reikalavimai: C++17 kompiliatorius; CMake VERSION >=3.10;
 ```
+</details>
+
+<details>
+  <summary><strong> Programos naudojimo instrukcija </strong></summary>
+
 ## Programos naudojimo instrukcija
 1. Įdiekite programą.
 2. Programai pradėjus veikti, naudotojas pasirenka iš Meniu norimą naudoti funkciją ir toliau seka Meniu aprašytais nurodymais.
@@ -76,6 +85,8 @@ Instaliacijos reikalavimai: C++17 kompiliatorius; CMake VERSION >=3.10;
         *Ekrane pateikiami greičio spartos analizės rezultatai, o failai "Vargsiukai.txt" ir "Kietiakai.txt" išsaugojami į aplanką "testavimo failai".*
 3. Programa nustoja veikti, kai yra išvedami rezultatai arba išvedama teksinė/informacinė eilutė, po vieno iš šių įvykių paspaudus bet kurį klaviatūros klavišą programa užsidaro.
 
+</details>
+
 ## Ankstesnės versijos
 [v0.1](https://github.com/guscila/objektinis/tree/v0.1-nauja)<br>
 ```
@@ -96,15 +107,62 @@ Versija v1.1 optimizuota, realizuoti visi reikiami *"Rule of Three"* įvesties i
 friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);  // išvedimo operatorius
 friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties operatorius
 ```
-## Programoje naudojami metodai
-### Įvesties metodai:
- * ivesk() - rankiniu būdu arba atsitiktinai sugeneruojami naudotojo pasirinkti studentų duomenys naudojant `operator>>`;
- * NuskaitymasIsFailo() - programa naudodama `operator>>` automatiškai nuskaito studentų duomenis iš failo;
-### Išvedimo metodai:
+<details>
+ <summary><strong> "Rule Of Three" </strong></summary>
+ 
+### "Rule Of Three":
+ * Kopijavimo konstruktorius:
+ ```c++
+Studentas(const Studentas& copy):
+    vardas_(copy.vardas_),
+    pavarde_(copy.pavarde_),
+    pazymiai_(copy.pazymiai_),
+    egzas_(copy.egzas_),
+    rez_(copy.rez_),
+    mediana_(copy.mediana_) {}
+```
+ * Kopijavimo priskyrimo operatorius:
+```c++
+Studentas& operator = (const Studentas& copy) {
+    if (this != &copy) {
+        vardas_ = copy.vardas_;
+        pavarde_ = copy.pavarde_;
+        pazymiai_ = copy.pazymiai_;
+        egzas_ = copy.egzas_;
+        rez_ = copy.rez_;
+        mediana_ = copy.mediana_;
+    }
+    return *this;
+}
+```
+ * Destruktorius:
+```c++
+~Studentas() {
+    vardas_.clear();
+    pavarde_.clear();
+    pazymiai_.clear();
+    egzas_ = 0;
+    rez_ = 0.0f;
+    mediana_ = 0.0f;
+}
+```
+</details>
+<details>
+ <summary><strong> Programoje naudojami metodai </strong></summary>
+ 
+### Programoje naudojami metodai
+#### Įvesties metodai:
+ * ivesk() - rankiniu būdu arba atsitiktinai sugeneruojami naudotojo pasirinkti studentų duomenys, o naudojant `operator>>` įvedami studento vardas ir pavardė;
+ * NuskaitymasIsFailo() - programa automatiškai nuskaito studentų duomenis iš failo;
+#### Išvedimo metodai:
  * IsvedimasIFaila() - programa naudodama `operator<<` išveda rezultatus į failą ( išvedimo formatai žemiau );
  * IsvedimasITerminala() - programa naudodama `operator<<` išveda rezultatus į ekraną / terminalą ( išvedimo formatai žemiau );
-
+</details>
+ 
 ## Programos failai
+<details>
+  <summary><strong> Failai </strong></summary>
+ 
 ### Failai:
 * v1.1 - pagrindinis programos failas;
 * funkcijos.h - programos funkcijų header'ių failas;
@@ -114,7 +172,10 @@ friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties
 * mylib.cpp - programos funkcijų failas;
 * CMakeLists.txt - programos įdiegimo instrukcijos failas;
 * run.bat - programos paleidimo failas;
-
+</details>
+<details>
+  <summary><strong> Formatai </strong></summary>
+ 
 ### Programos įvesties/generavimo failų formatas:
 | Vardas1 | Pavarde1 | ND1 | ND2 | ... | Egz. |
 |:--------|:---------|:----|:----|:----|:-----|
@@ -139,6 +200,10 @@ Visi programa sugeneruoti failai buvo sukurti su 5 namų darbų pažymiais stude
 ![rezultatų terminale pavyzdys](foto/terminalo_rezultatai_pvz.png)
 ### Programos greičio spartos analizės rezultatų išvedimo formatas:
 ![rezultatųformatas](foto/rezultatupvz.png)
+</details>
+<details>
+  <summary><strong> Programa testuoti failai </strong></summary>
+
 ### Programa testuoti failai:
 * Užduotyje pateikti failai:
   * "studentai10000.txt" - 10 tūkst. studentų <br>
@@ -150,11 +215,17 @@ Visi programa sugeneruoti failai buvo sukurti su 5 namų darbų pažymiais stude
   * "100000studentu.txt" - 100 tūkst. studentų <br>
   * "1000000studentu.txt" - 1 mln. studentų <br>
   * "10000000studentu.txt" - 10 mln. studentų <br>
-### Testavimo sistemos parametrai:
+</details>
+
+## Testavimo sistemos parametrai
 CPU: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz (2.42 GHz) <br>
 RAM: 8.00 GB <br>
 HDD: SSD 238 GB <br>
-## Greičio spartos analizė:
+
+## Greičio spartos analizės:
+<details>
+  <summary><strong> Studento struktūros ir klasės palyginimas </strong></summary>
+ 
 ### Studento struktūros ir klasės palyginimas:
 #### `struct` Studentas greičio spartos analizė:
 | Failas                 | Duomenų nuskaitymas | Studentų kategorizacija | *'Kietiakų'<sup>1</sup>* rūšiavimas | *'Vargšiukų'<sup>2</sup>* rūšiavimas | Išvedimas į failą (*'Kietiakai'<sup>1</sup>*)  | Išvedimas į failą (*'Vargšiukai'<sup>2</sup>*) |
@@ -195,6 +266,10 @@ Visi testavimai buvo vykdomi naudojant 'Release' funkciją Visual Studio program
 ```
 ### Studentas struktūros ir klasės palyginimo išvados:
 `struct` tipas beveik visais aspektais yra greitesnis už `class` tipą. Optimizacija O2 yra optimiškiausia greičio spartos aspektu. `.exe` failo dydis progresyviai didėja su naudojama optimizacija, tačiau nepriklauso nuo testuojamų failų dydžio.
+</details>
+<details>
+  <summary><strong> Studento kategorizacijos strategijų testavimas </strong></summary>
+
 ### Strategijos:
 * Strategija 1 - Bendro studentų konteinerio kategorizacija į du naujus konteinerius: *'Kietiakai'<sup>1</sup>* ir *'Vargšiukai'<sup>2</sup>*.
 * Strategija 2 - Bendro studentų konteinerio kategorizacija panaudojant tik vieną naują konteinerį: *'Vargšiukai'<sup>2</sup>*.
@@ -244,7 +319,12 @@ Išvados: Pirmų dviejų studentų kategorizacijos strategijų spartos panašios
 Studentų kategorizacijos strategijų testavimas buvo atliktas naudojant v1.0 realizaciją.
 ```
 ### Studentų kategorizacijos strategijų testavimo išvados:
-Pritaikius `std::partition` ir `std::make_move_iterator` algoritmus buvo sukurta Strategija 3 paremta antrosios strategijos pagrindu. Trečioji strategija yra spartesnė ir efektyvesnė dirbant su vektoriaus tipo konteineriais, tačiau susiduria su sunkumais dirbant su didesniais failais. Nepaisant to, Strategija 3 yra efektyviausia iš visų testuotų strategijų. 
+Pritaikius `std::partition` ir `std::make_move_iterator` algoritmus buvo sukurta Strategija 3 paremta antrosios strategijos pagrindu. Trečioji strategija yra spartesnė ir efektyvesnė dirbant su vektoriaus tipo konteineriais, tačiau susiduria su sunkumais dirbant su didesniais failais. Nepaisant to, Strategija 3 yra efektyviausia iš visų testuotų strategijų.
+</details>
+<details>
+  <summary> v0.3 greičio spartos analizė </summary>
+ 
+### v0.3 greičio spartos analizė
 ### Testavimo laikai veiksmus atliektant su vektoriaus (vector) konteineriu:
 | Failas                 | Failo sukūrimas | Duomenų nuskaitymas | Studentų kategorizacija | *'Kietiakų'<sup>1</sup>* rūšiavimas | *'Vargšiukų'<sup>2</sup>* rūšiavimas | Išvedimas į failą (*'Kietiakai'<sup>1</sup>*)  | Išvedimas į failą (*'Vargšiukai'<sup>2</sup>*) |
 |:-----------------------|:----------------|:--------------------|:------------------------|:------------------------------------|:-------------------------------------|:-----------------------------------------------|:-----------------------------------------------|
@@ -258,7 +338,6 @@ Pritaikius `std::partition` ir `std::make_move_iterator` algoritmus buvo sukurta
 | 1000000studentu.txt    | 4.323 s         | 2,248 s             | 0,241 s                 | 0,26 s                              | 0,179 s                              | 2,672 s                                        | 1,579 s                                        |
 | 10000000studentu.txt   | 42.89 s         | 22,458 s            | 3,067 s                 | 3,213 s                             | 2,09 s                               | 25,029 s                                       | 15,467 s                                       |
 <br>
-
 ### Testavimo laikai veiksmus atliektant su sąrašo (list) konteineriu:
 | Failas                 | Failo sukūrimas | Duomenų nuskaitymas | Studentų kategorizacija | *'Kietiakų'<sup>1</sup>* rūšiavimas | *'Vargšiukų'<sup>2</sup>* rūšiavimas | Išvedimas į failą (*'Kietiakai'<sup>1</sup>*)  | Išvedimas į failą (*'Vargšiukai'<sup>2</sup>*) |
 |:-----------------------|:----------------|:--------------------|:------------------------|:------------------------------------|:-------------------------------------|:-----------------------------------------------|:-----------------------------------------------|
@@ -277,5 +356,6 @@ Pritaikius `std::partition` ir `std::make_move_iterator` algoritmus buvo sukurta
 Greičio spartos analizės lentelėse pateikti 3 testavimų laikų vidurkiai.
 Greičio spartos analizė buvo atlikta naudojant v0.3 realizaciją.
 ```
-### Greičio spartos analizės išvados:
+### v0.3 greičio spartos analizės išvados:
 Atlikus greičio spartos analizę galime matyti, kad abiejų konteinerių greičio spartos rezultatai yra labai panašūs. Tačiau sąrašo tipo konteineris (list) sparčiau atlieka duomenų nuskaitymą iš failo bei šių duomenų kategorizaciją. Tuo tarpu vektoriaus tipo konteineris (vector) yra spartesnis duomenis išvedant į failą. <br>
+</details>
