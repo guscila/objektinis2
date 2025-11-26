@@ -13,7 +13,7 @@ std::istream& operator>>(std::istream& in, Studentas& stud) {   // įvesties ope
         stud.setVardas(vardas);
         stud.setPavarde(pavarde);
     }
-    return in;
+        return in;
 }
 
 // Funkcijos:
@@ -163,8 +163,9 @@ Studentas ivesk() { // studentų įvesties fukcija
     }
     else {
         laik.setRez(laik.egzas() * 0.6 + double(sum) / double(laik.pazymiai().size()) * 0.4); // studento galutinio vidurkio apskaičiavimas
-        laik.setMediana (mediana(laik.pazymiai()));  // medianos apskaičiavimo funkcijos iškvietimas
+        laik.setMediana(mediana(laik.pazymiai()));  // medianos apskaičiavimo funkcijos iškvietimas
     }
+    //RuleOfThreeTest(laik);  // Rule of Three testavimas
     return laik;
 }
 
@@ -189,7 +190,10 @@ void NuskaitymasIsFailo(cont& grupe, string name) { // funkcija duomenų nuskait
     while (getline(df, line)) {
         stringstream ss(line);  // nuskaityta eilutė padalinama į word objektus
         laik.pazymiai().clear();  // pažymių vektoriaus išvalymas
-        ss >> laik; // panaudojamas įvesties operatorius
+        string vardas, pavarde;
+        ss >> vardas >> pavarde;
+        laik.setVardas(vardas);
+        laik.setPavarde(pavarde);
         int sum = 0, paz;   // sum - studento pažymių suma; paz - įvedamas pažymys
         for (int i = 0; i < nd; i++) {  // nuskaitomi namų darbų pažymiai
             ss >> paz;
@@ -386,4 +390,30 @@ void StudentuRusiavimas(cont& grupe, string name) {    // studentų rūšiavimo 
     }
     string text = " irasu " + name + " surusiavimo trukme: ";
     rusiavimas.save(text, grupe.size());
+}
+
+void RuleOfThreeTest(const Studentas& laik) {
+    cout << string(50, '-') << endl;
+    cout << string(50, '-') << endl;
+    cout << "Rule Of Three testavimas:\n";
+    cout << string(50, '-') << endl;
+    Studentas A(laik);
+    bool testA = (A.vardas() == laik.vardas() && A.pavarde() == laik.pavarde() && A.pazymiai() == laik.pazymiai() && A.egzas() == laik.egzas() && A.rez() == laik.rez() && A.mediana() == laik.mediana());
+    cout << "Kopijavimo konstruktoriaus testas sekmingas: " << boolalpha << testA << endl;
+    cout << "Nukopijuotas studentas:\n";
+    cout << A << endl;
+    A.~Studentas();
+    cout << "Sunaikintas studentas:\n";
+    cout << A << endl;
+    Studentas B;
+    B = laik;
+    bool testB = (B.vardas() == laik.vardas() && B.pavarde() == laik.pavarde() && B.pazymiai() == laik.pazymiai() && B.egzas() == laik.egzas() && B.rez() == laik.rez() && B.mediana() == laik.mediana());
+    cout << "Kopijavimo priskyrimo operatoriaus testas sekmingas: " << boolalpha << testB << endl;
+    cout << "Nukopijuotas studentas:\n";
+    cout << B << endl;
+    B.~Studentas();
+    cout << "Sunaikintas studentas:\n";
+    cout << B << endl;
+    cout << string(50, '-') << endl;
+    cout << string(50, '-') << endl;
 }

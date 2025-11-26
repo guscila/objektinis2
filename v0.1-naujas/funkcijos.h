@@ -61,6 +61,7 @@ template<typename cont>
 void FailuTestavimas(cont& grupe, cont& vargsiukai, cont& kietiakai, string name, int strategija);	// failų greičio spartos analizės funkcija
 template<typename cont>
 void StudentuRusiavimas(cont& grupe, string name);	// studentų rūšiavimo funkcija
+void RuleOfThreeTest(const Studentas& laik);
 
 // templates:
 template void NuskaitymasIsFailo<vector<Studentas>>(vector<Studentas>&, string);
