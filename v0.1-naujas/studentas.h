@@ -67,5 +67,5 @@ public:
     friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties operatorius
 
     // Abstraktumas:
-   std::string WhoIAm() const override { return "Studentas iš studentas klasės"; }
+    std::string WhoIAm() const override { return "As esu studentas is Studentas klases."; } // abstrakti funkcija perrašoma
 };

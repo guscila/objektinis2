@@ -165,7 +165,7 @@ Studentas ivesk() { // studentų įvesties fukcija
         laik.setRez(laik.egzas() * 0.6 + double(sum) / double(laik.pazymiai().size()) * 0.4); // studento galutinio vidurkio apskaičiavimas
         laik.setMediana(mediana(laik.pazymiai()));  // medianos apskaičiavimo funkcijos iškvietimas
     }
-    //RuleOfThreeTest(laik);  // Rule of Three testavimas
+    RuleOfThreeTest(laik);  // Rule of Three testavimas
     Zmogus A;   // Žmogaus objekto kūrimo demonstracija
     return laik;
 }
@@ -401,6 +401,7 @@ void RuleOfThreeTest(const Studentas& laik) {
     Studentas A(laik);
     bool testA = (A.vardas() == laik.vardas() && A.pavarde() == laik.pavarde() && A.pazymiai() == laik.pazymiai() && A.egzas() == laik.egzas() && A.rez() == laik.rez() && A.mediana() == laik.mediana());
     cout << "Kopijavimo konstruktoriaus testas sekmingas: " << boolalpha << testA << endl;
+    cout << "Virtualios funkcijos WhoIAm demonstracija: " << A.WhoIAm() << endl;
     cout << "Nukopijuotas studentas:\n";
     cout << A << endl;
     A.~Studentas();
@@ -408,8 +409,10 @@ void RuleOfThreeTest(const Studentas& laik) {
     cout << A << endl;
     Studentas B;
     B = laik;
+    cout << string(50, '-') << endl;
     bool testB = (B.vardas() == laik.vardas() && B.pavarde() == laik.pavarde() && B.pazymiai() == laik.pazymiai() && B.egzas() == laik.egzas() && B.rez() == laik.rez() && B.mediana() == laik.mediana());
     cout << "Kopijavimo priskyrimo operatoriaus testas sekmingas: " << boolalpha << testB << endl;
+    cout << "Virtualios funkcijos WhoIAm demonstracija: " << A.WhoIAm() << endl;
     cout << "Nukopijuotas studentas:\n";
     cout << B << endl;
     B.~Studentas();
