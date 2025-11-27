@@ -1,5 +1,5 @@
 # 2Lab.
-v1.2 release
+v1.5 release
 ## Programos aprašymas
 Programa leidžia naudotojui įvesti rankiniu būdu arba nuskaityti studentų duomenis ( vardą ir pavardę, atliktų namų darbų rezultatus (10-balėje sistemoje), egzamino balą ) ir suskaičiuoja galutinį balą pagal formulę ( *pav.1* ). Visos programos veikimo metu naudotojas gali pasirinkti kokio tipo ( vector ar list ) konteineris bus naudojamas. Įvesdamas duomenis rankiniu būdu naudotojas gali namų darbų ir egzamino rezultatuts įvesti arba atsitiktinai sugeneruoti. Naudotojui taip pat leidžiama sugeneruoti failą su studentų vardais, namų darbų ir egzamino rezultatais, kurį vėliau gali naudoti programos testavimo funkcijos metu. Failų testavimo metu, naudotojui pasirinkus failą, yra atliekama greičio spartos analizė naudojant vieną iš trijų studentų kategorizacijos strategijų bei suteikiant naudotojui pasirinkimą kokia tvarka bus surūšiuoti studentų *'Kietiakų'<sup>1</sup>* ir *'Vargšiukų'<sup>2</sup>* failai. Rezultatai yra išvedami į terminalą arba į failą priklausomai nuo pasirinktos funkcijos. Rezultatų, failų ir generacijos formatai yra aprašyti žemiau.
 ```
@@ -149,7 +149,7 @@ Studentas& operator = (const Studentas& copy) {
 </details>
 <details>
  <summary><strong> Programoje naudojami metodai </strong></summary>
- 
+
 ### Programoje naudojami metodai
 #### Įvesties metodai:
  * ivesk() - rankiniu būdu arba atsitiktinai sugeneruojami naudotojo pasirinkti studentų duomenys, o naudojant `operator>>` įvedami studento vardas ir pavardė;
@@ -157,6 +157,54 @@ Studentas& operator = (const Studentas& copy) {
 #### Išvedimo metodai:
  * IsvedimasIFaila() - programa naudodama `operator<<` išveda rezultatus į failą ( išvedimo formatai žemiau );
  * IsvedimasITerminala() - programa naudodama `operator<<` išveda rezultatus į ekraną / terminalą ( išvedimo formatai žemiau );
+</details>
+
+#### [v1.5](https://github.com/guscila/objektinis2/tree/v1.5) pokyčiai:
+Versija v1.2 optimizuota, sukurta nauja bazinė abstrakti Zmogus klasė, kurioje saugomas asmens vardas ir pavardė; Studento klasė paversta į išvestinę klasę iš klasės Zmogus.
+##### Virtuali abstrakti funkcija klasėje Zmogus:
+```c++
+virtual std::string WhoIAm() const = 0; // abstrakti funkcija, neleidžianti kurti klasės objektų
+```
+##### Klasės Zmogus objektų kūrimo metu gaunamas Error'as:
+![zmogaus demonstracijos error](foto/zmogaus_demonstracijos_error.png)
+<details>
+ <summary><strong> "Rule Of Three" </strong></summary>
+ 
+### "Rule Of Three":
+Adaptuota klasės Studentas "Rule Of Three":
+ * Kopijavimo konstruktorius:
+ ```c++
+Studentas(const Studentas& copy):
+    Zmogus(copy),
+    pazymiai_(copy.pazymiai_),
+    egzas_(copy.egzas_),
+    rez_(copy.rez_),
+    mediana_(copy.mediana_) {}
+```
+ * Kopijavimo priskyrimo operatorius:
+```c++
+Studentas& operator = (const Studentas& copy) {
+    if (this != &copy) {
+        Zmogus::operator=(copy);
+        pazymiai_ = copy.pazymiai_;
+        egzas_ = copy.egzas_;
+        rez_ = copy.rez_;
+        mediana_ = copy.mediana_;
+    }
+    return *this;
+}
+```
+ * Destruktorius:
+```c++
+~Studentas() override {
+    vardas_.clear();
+    pavarde_.clear();
+    pazymiai_.clear();
+    egzas_ = 0;
+    rez_ = 0.0f;
+    mediana_ = 0.0f;
+}
+```
 </details>
  
 ## Programos failai
