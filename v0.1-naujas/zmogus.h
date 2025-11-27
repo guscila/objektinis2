@@ -8,7 +8,7 @@ protected:
     std::string pavarde_;
 public:
     // Konstruktorius:
-    Zmogus() = default;
+    Zmogus() : vardas_(""), pavarde_("") {}
 
     // Destruktorius:
     virtual ~Zmogus() {
@@ -21,8 +21,8 @@ public:
     inline const std::string pavarde() const { return pavarde_; }
 
     // Seter'iai:
-    inline void setVardas(const std::string& v) { vardas_ = v; }
-    inline void setPavarde(const std::string& p) { pavarde_ = p; }
+    inline void setVardas(const std::string& vardas) { vardas_ = vardas; }
+    inline void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
 
-    virtual void abstaktu() const = 0;
+    virtual std::string WhoIAm() const = 0;
 };

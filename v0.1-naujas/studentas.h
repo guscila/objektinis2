@@ -3,11 +3,10 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "zmogus.h"
 
-class Studentas {   // Studentas klasė
+class Studentas : public Zmogus {   // derived Studentas klasė
 private:
-    std::string vardas_;
-    std::string pavarde_;
     std::vector<int> pazymiai_;
     int egzas_;
     float rez_;
@@ -15,14 +14,14 @@ private:
 public:
     // Konstruktorius:
     Studentas() :
+        Zmogus(),
         egzas_(0),
         rez_(0.0f),
         mediana_(0.0f) {}
 
     // Kopijavimo konstruktorius:
-    Studentas(const Studentas& copy):
-        vardas_(copy.vardas_),
-        pavarde_(copy.pavarde_),
+    Studentas(const Studentas& copy) :
+        Zmogus(copy),
         pazymiai_(copy.pazymiai_),
         egzas_(copy.egzas_),
         rez_(copy.rez_),
@@ -31,8 +30,7 @@ public:
     // Kopijavimo priskyrimo operatorius:
     Studentas& operator = (const Studentas& copy) {
         if (this != &copy) {
-            vardas_ = copy.vardas_;
-            pavarde_ = copy.pavarde_;
+            Zmogus::operator=(copy);
             pazymiai_ = copy.pazymiai_;
             egzas_ = copy.egzas_;
             rez_ = copy.rez_;
@@ -42,7 +40,7 @@ public:
     }
 
     // Destruktorius:
-    ~Studentas() {
+    ~Studentas() override {
         vardas_.clear();
         pavarde_.clear();
         pazymiai_.clear();
@@ -52,8 +50,6 @@ public:
     }
 
     // Geter'iai:
-    inline const std::string vardas() const { return vardas_; }
-    inline const std::string pavarde() const { return pavarde_; }
     inline int egzas() const { return egzas_; }
     inline const std::vector<int> pazymiai() const { return pazymiai_; }
     inline std::vector<int>& pazymiai() { return pazymiai_; }
@@ -61,14 +57,15 @@ public:
     inline float mediana() const { return mediana_; }
 
     // Seter'iai:
-    inline void setVardas(const std::string& v) { vardas_ = v; }
-    inline void setPavarde(const std::string& p) { pavarde_ = p; }
-    inline void setEgzas(int e) { egzas_ = e; }
+    inline void setEgzas(int egzas) { egzas_ = egzas; }
     inline void setPazymiai(const std::vector<int>& nd) { pazymiai_ = nd; }
-    inline void setRez(float r) { rez_ = r; }
-    inline void setMediana(float m) { mediana_ = m; }
+    inline void setRez(float rez) { rez_ = rez; }
+    inline void setMediana(float mediana) { mediana_ = mediana; }
 
     // Operatoriai:
     friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);  // išvedimo operatorius
     friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties operatorius
+
+    // Abstraktumas:
+   std::string WhoIAm() const override { return "Studentas iš studentas klasės"; }
 };

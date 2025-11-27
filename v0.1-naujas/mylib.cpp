@@ -166,6 +166,7 @@ Studentas ivesk() { // studentų įvesties fukcija
         laik.setMediana(mediana(laik.pazymiai()));  // medianos apskaičiavimo funkcijos iškvietimas
     }
     //RuleOfThreeTest(laik);  // Rule of Three testavimas
+    Zmogus A;   // Žmogaus objekto kūrimo demonstracija
     return laik;
 }
 
