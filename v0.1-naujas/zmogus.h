@@ -1,8 +1,6 @@
 ﻿#pragma once
 
 #include <string>
-#include <vector>
-#include <iostream>
 
 class Zmogus {   // Žmogaus klasė
 protected:
@@ -10,22 +8,7 @@ protected:
     std::string pavarde_;
 public:
     // Konstruktorius:
-    Zmogus() {}
-
-    // Kopijavimo konstruktorius:
-    Zmogus(const Zmogus& copy) :
-        vardas_(copy.vardas_),
-        pavarde_(copy.pavarde_) {
-    }
-
-    // Kopijavimo priskyrimo operatorius:
-    Zmogus& operator = (const Zmogus& copy) {
-        if (this != &copy) {
-            vardas_ = copy.vardas_;
-            pavarde_ = copy.pavarde_;
-        }
-        return *this;
-    }
+    Zmogus() = default;
 
     // Destruktorius:
     virtual ~Zmogus() {
@@ -40,4 +23,6 @@ public:
     // Seter'iai:
     inline void setVardas(const std::string& v) { vardas_ = v; }
     inline void setPavarde(const std::string& p) { pavarde_ = p; }
+
+    virtual void abstaktu() const = 0;
 };
