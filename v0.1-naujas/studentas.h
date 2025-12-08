@@ -65,7 +65,14 @@ public:
     // Operatoriai:
     friend std::ostream& operator<<(std::ostream& out, const Studentas& stud);  // išvedimo operatorius
     friend std::istream& operator>>(std::istream& in, Studentas& stud); // įvesties operatorius
-
+    bool operator==(const Studentas stud) const {   // lygybės operatorius
+        if (vardas() == stud.vardas() || pavarde() == stud.pavarde() || pazymiai() == stud.pazymiai() || egzas() == stud.egzas() || rez() == stud.rez() || mediana() == stud.mediana()) return true;
+        else return false;
+    }
+    bool operator!=(const Studentas stud) const {   // nelygybės operatorius
+        if (vardas() != stud.vardas() || pavarde() != stud.pavarde() || pazymiai() != stud.pazymiai() || egzas() != stud.egzas() || rez() != stud.rez() || mediana() != stud.mediana()) return true;
+        else return false;
+    }
     // Abstraktumas:
     std::string WhoIAm() const override { return "As esu studentas is Studentas klases."; } // abstrakti funkcija perrašoma
 };
