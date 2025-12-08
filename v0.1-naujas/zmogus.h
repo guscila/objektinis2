@@ -25,5 +25,5 @@ public:
     inline void setPavarde(const std::string& pavarde) { pavarde_ = pavarde; }
 
     // Abstraktumas:
-    virtual std::string WhoIAm() const = 0; // abstrakti funkcija, neleidianti kurti klasės objektų
+    virtual std::string WhoIAm() const = 0; // abstrakti funkcija, neleidžianti kurti klasės objektų
 };
