@@ -50,7 +50,7 @@ public:
         mediana_ = 0.0f;
     }
 
-    std::string output() const {
+    std::string output() const {    // pagalbinis eilutės išvedimo operatorius
         std::ostringstream os;
         os << *this;
         return os.str();

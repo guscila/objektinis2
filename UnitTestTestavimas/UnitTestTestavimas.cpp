@@ -8,7 +8,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTestTestavimas
 {
-	Studentas testing(const std::string& vardas,
+	Studentas testing(const std::string& vardas,	// pagalbinis testavimo konstruktorius
 		const std::string& pavarde,
 		const std::vector<int>& paz,
 		int egzas,
@@ -27,28 +27,28 @@ namespace UnitTestTestavimas
 	TEST_CLASS(Testavimas)
 	{
 	public:
-		TEST_METHOD(DefaultConstuctor)
+		TEST_METHOD(DefaultConstuctor)	// Default Constructor testas
 		{
 			Logger::WriteMessage("Default Constructor");
 			Studentas Stud;
 			Studentas Stud2 = testing("", "", {}, 0, 0.0f, 0.0f);
 			Assert::AreEqual(Stud.output(), Stud2.output());
 		}
-		TEST_METHOD(ParameterizedConstuctor)
+		TEST_METHOD(ParameterizedConstuctor)	// Constructor su reikšm?mis testas
 		{
 			Logger::WriteMessage("Parameterized Constructor");
 			Studentas Stud = testing("Vardas", "Pavarde", { 1,2,3 }, 10, 8.6, 2);
 			Studentas Stud2 = testing("Vardas", "Pavarde", { 1,2,3 }, 10, 8.6, 2);
 			Assert::AreEqual(Stud.output(), Stud2.output());
 		}
-		TEST_METHOD(CopyConstuctor)
+		TEST_METHOD(CopyConstuctor)	// Copy Constructor testas
 		{
 			Logger::WriteMessage("Copy Constructor");
 			Studentas Stud = testing("Vardas", "Pavarde", { 1,2,3 }, 10, 8.6, 2);
 			Studentas Stud2(Stud);
 			Assert::AreEqual(Stud.output(), Stud2.output());
 		}
-		TEST_METHOD(CopyAssignment)
+		TEST_METHOD(CopyAssignment)	// Copy Assignment testas
 		{
 			Logger::WriteMessage("Copy Assignmnet Operator");
 			Studentas Stud = testing("Vardas", "Pavarde", { 1,2,3 }, 10, 8.6, 2);
@@ -56,14 +56,15 @@ namespace UnitTestTestavimas
 			Stud2 = Stud;
 			Assert::AreEqual(Stud.output(), Stud2.output());
 		}
-		TEST_METHOD(Getters)
+		TEST_METHOD(Getters)	// Getters testas
 		{
 			Logger::WriteMessage("Getters");
 			Studentas Stud = testing("Vardas", "Pavarde", { 1,2,3 }, 10, 8.6, 2);
 			Assert::AreEqual(Stud.vardas().c_str(), "Vardas");
 			Assert::AreEqual(Stud.pavarde().c_str(), "Pavarde");
-			const std::vector<int>& paz = Stud.pazymiai();
-			Assert::AreEqual(static_cast<size_t>(3), paz.size());			Assert::AreEqual(10, Stud.egzas());
+			const std::vector<int>& vec = Stud.pazymiai();
+			Assert::AreEqual(static_cast<size_t>(3), vec.size());
+			Assert::AreEqual(10, Stud.egzas());
 			Assert::AreEqual(8.6f, Stud.rez());
 			Assert::AreEqual(2.0f, Stud.mediana());
 
