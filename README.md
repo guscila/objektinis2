@@ -208,7 +208,21 @@ Studentas& operator = (const Studentas& copy) {
 </details>
 
 #### [v2.0](https://github.com/guscila/objektinis2/tree/v2.0) pokyčiai:
-Versija v1.5 optimizuota, sukurtas ir pridėtas UnitTestavimas projektas, kuriame atlikti 5 testai naudojant VisualStudio integruotą testavimo sistemą. Pridėta projekto [HTML dokumentacija](https://github.com/guscila/objektinis2/tree/v2.0/v0.1-naujas/html) ir LaTeX dokumentacija [PDF](https://github.com/guscila/objektinis2/blob/v2.0/v0.1-naujas/latex/2lab__LATEX_dokumentacija.pdf) formatu.
+Versija v1.5 optimizuota; sukurtas ir pridėtas UnitTestTestavimas projektas, kuriame atlikti 5 testai naudojant VisualStudio integruotą testavimo sistemą; pridėta projekto [HTML dokumentacija](https://github.com/guscila/objektinis2/tree/v2.0/v0.1-naujas/html) ir LaTeX dokumentacija [PDF](https://github.com/guscila/objektinis2/blob/v2.0/v0.1-naujas/latex/2lab__LATEX_dokumentacija.pdf) formatu.
+
+<details>
+ <summary><strong> UnitTestTestavimas </strong></summary>
+ 
+### UnitTestTestavimas:
+* DefaultConstructor - Studento klasės bazinio konstruktoriaus testas
+* ParametrizedConstructor - parametruoto konstruktoriaus testas
+* CopyConstructor - kopijavimo konstruktoriaus testas
+* CopyAssignment - kopijavimo priskyrimo operatoriaus testas
+* Getters - geterių testas
+### UnitTestTestavimo rezultatai:
+![UnitTestTestavimoRezultatai](foto/UnitTesting.png)
+
+</details>
 
 ## Programos failai
 <details>
