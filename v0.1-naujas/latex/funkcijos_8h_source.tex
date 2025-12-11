@@ -1,0 +1,83 @@
+\doxysection{funkcijos.\+h}
+\hypertarget{funkcijos_8h_source}{}\label{funkcijos_8h_source}\mbox{\hyperlink{funkcijos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{studentas_8h}{studentas.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_timer_8h}{Timer.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{meniu_8h}{meniu.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{using\ }std::cout;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{using\ }std::cin;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ }std::endl;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{using\ }std::string;}
+\DoxyCodeLine{00026\ \textcolor{keyword}{using\ }std::vector;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{using\ }std::setw;}
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ }std::left;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{using\ }std::right;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{using\ }std::setfill;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{using\ }std::setprecision;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{using\ }std::fixed;}
+\DoxyCodeLine{00033\ \textcolor{keyword}{using\ }std::stable\_sort;}
+\DoxyCodeLine{00034\ \textcolor{keyword}{using\ }std::uniform\_int\_distribution;}
+\DoxyCodeLine{00035\ \textcolor{keyword}{using\ }std::mt19937;}
+\DoxyCodeLine{00036\ \textcolor{keyword}{using\ }std::random\_device;}
+\DoxyCodeLine{00037\ \textcolor{keyword}{using\ }std::ifstream;}
+\DoxyCodeLine{00038\ \textcolor{keyword}{using\ }std::ofstream;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{using\ }std::getline;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }std::stringstream;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ }std::cerr;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{using\ }std::numeric\_limits;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{using\ }std::streamsize;}
+\DoxyCodeLine{00044\ \textcolor{keyword}{using\ }std::list;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \mbox{\hyperlink{struct_meniu_ats}{MeniuAts}}\ \mbox{\hyperlink{funkcijos_8h_a2385bcd5b2f5cfdcc478db8b50cde977}{meniu}}();\ \ \ \ \textcolor{comment}{//\ meniu\ funkcija}}
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{funkcijos_8h_ac2d6f513070127f7f881693a3028210f}{VienasDu}}();\ \textcolor{comment}{//\ funkcija\ patikrai,\ kad\ meniu\ įvestis\ būtų\ 1\ arba\ 2}}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{funkcijos_8h_a0b669cd0985064f25efd5fd696bdc7cf}{tikNr}}();\ \ \ \ \textcolor{comment}{//\ funkcija\ patikrai,\ kad\ įvestis\ yra\ skaičius\ didesnis\ už\ 0}}
+\DoxyCodeLine{00049\ \mbox{\hyperlink{class_studentas}{Studentas}}\ \mbox{\hyperlink{funkcijos_8h_ac6511d0b0b0a916c216a0dfcb160d943}{ivesk}}();\ \ \textcolor{comment}{//\ studentų\ įvesties\ fukcija}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ cont>}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a8bf9377ba93b532cab45db19b72c173d}{NuskaitymasIsFailo}}(cont\&\ grupe,\ \textcolor{keywordtype}{string}\ name);\ \ \ \textcolor{comment}{//\ funkcija\ duomenų\ nuskaitymui\ iš\ failo}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ cont>}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ab0e81e082b6b945283e1cd30ecb15c30}{IsvedimasIFaila}}(cont\&\ grupe,\ \textcolor{keywordtype}{string}\ name);\ \ \textcolor{comment}{//\ funkcija\ rezultatų\ išvedimui\ į\ failą}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ cont>}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a40a083011bf7f82eb6298028d29bdeea}{IsvedimasITerminala}}(cont\&\ grupe);\ \ \textcolor{comment}{//\ funckija\ rezultatų\ išvedimui\ į\ terminalą}}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{funkcijos_8h_ae036934debc4fb08b7629dd30c842523}{mediana}}(vector<int>\&\ pazymiai);\ \ \ \textcolor{comment}{//\ medianos\ apskaičiavimo\ funkcija}}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a79cd3280208c57461cef7727a8623aea}{FailuGeneravimas}}(\textcolor{keywordtype}{string}\ name);\ \textcolor{comment}{//\ studentų\ duomenų\ failų\ generavimo\ funkcija}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ cont>}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a3998b92caaf9cd3abeff1dff8d5dc1c0}{StudentuKategorizacija}}(cont\&\ grupe,\ cont\&\ vargsiukai,\ cont\&\ kietiakai,\ \textcolor{keywordtype}{int}\ strategija);\ \ \ \ \textcolor{comment}{//\ studentų\ kategorizacijos\ funkcija\ į\ Vargšiukus\ ir\ Kietiakus}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ cont>}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ac6b1ffc68443fc54f13033231b580798}{FailuTestavimas}}(cont\&\ grupe,\ cont\&\ vargsiukai,\ cont\&\ kietiakai,\ \textcolor{keywordtype}{string}\ name,\ \textcolor{keywordtype}{int}\ strategija);\ \ \textcolor{comment}{//\ failų\ greičio\ spartos\ analizės\ funkcija}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ cont>}
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ac98d2af4a133fa2f11b143520ef2e792}{StudentuRusiavimas}}(cont\&\ grupe,\ \textcolor{keywordtype}{string}\ name);\ \ \textcolor{comment}{//\ studentų\ rūšiavimo\ funkcija}}
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ab49712d38fbfe36c686367f412be8b43}{RuleOfThreeTest}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_studentas}{Studentas}}\&\ laik);\ \ \ \ \textcolor{comment}{//\ RuleOfThree\ testavimo\ funkcija}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ templates:}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a8bf9377ba93b532cab45db19b72c173d}{NuskaitymasIsFailo<vector<Studentas>}}>(vector<Studentas>\&,\ string);}
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a8bf9377ba93b532cab45db19b72c173d}{NuskaitymasIsFailo<list<Studentas>}}>(list<Studentas>\&,\ string);}
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ab0e81e082b6b945283e1cd30ecb15c30}{IsvedimasIFaila<vector<Studentas>}}>(vector<Studentas>\&,\ string);}
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ab0e81e082b6b945283e1cd30ecb15c30}{IsvedimasIFaila<list<Studentas>}}>(list<Studentas>\&,\ string);}
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a3998b92caaf9cd3abeff1dff8d5dc1c0}{StudentuKategorizacija<vector<Studentas>}}>(vector<Studentas>\&,\ vector<Studentas>\&,\ vector<Studentas>\&,\ int);}
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a3998b92caaf9cd3abeff1dff8d5dc1c0}{StudentuKategorizacija<list<Studentas>}}>(list<Studentas>\&,\ list<Studentas>\&,\ list<Studentas>\&,\ int);}
+\DoxyCodeLine{00073\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ac6b1ffc68443fc54f13033231b580798}{FailuTestavimas<vector<Studentas>}}>(vector<Studentas>\&,\ vector<Studentas>\&,\ vector<Studentas>\&,\ string,\ int);}
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ac6b1ffc68443fc54f13033231b580798}{FailuTestavimas<list<Studentas>}}>(list<Studentas>\&,\ list<Studentas>\&,\ list<Studentas>\&,\ string,\ int);}
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ac98d2af4a133fa2f11b143520ef2e792}{StudentuRusiavimas<vector<Studentas>}}>(vector<Studentas>\&,\ string);}
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_ac98d2af4a133fa2f11b143520ef2e792}{StudentuRusiavimas<list<Studentas>}}>(list<Studentas>\&,\ string);}
+\DoxyCodeLine{00077\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a40a083011bf7f82eb6298028d29bdeea}{IsvedimasITerminala<vector<Studentas>}}>(vector<Studentas>\&);}
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funkcijos_8h_a40a083011bf7f82eb6298028d29bdeea}{IsvedimasITerminala<list<Studentas>}}>(list<Studentas>\&);}
+
+\end{DoxyCode}
