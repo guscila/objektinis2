@@ -12,7 +12,7 @@ Programa leidžia naudotojui įvesti rankiniu būdu arba nuskaityti studentų du
   <summary><strong> Programos diegimo instrukcija </strong></summary>
  
 ## Programos diegimo instrukcija
-1. Nukopijuokite projekto direktoriją ir paruošiame "build" direktoriją, kur nukeliaus visi mūsų sukurti failai:
+1. Nukopijuojame projekto direktoriją ir paruošiame "build" direktoriją, kur nukeliaus visi mūsų sukurti failai:
 ```
 cd projekto_direktorija
 mkdir build
@@ -23,7 +23,7 @@ cd build
 cmake ..
 (čia naudojame "cmake ..", nes "CMakeLists.txt" failas yra aukštesnio lygio aplanke)
 ```
-3. Kompliuojame programą Release režimu:
+3. Kompiliuojame programą Release režimu:
 ```
 cmake --build . --config Release
 ```
@@ -208,20 +208,21 @@ Studentas& operator = (const Studentas& copy) {
 </details>
 
 #### [v2.0](https://github.com/guscila/objektinis2/tree/v2.0) pokyčiai:
-Versija v1.5 optimizuota; sukurtas ir pridėtas UnitTestTestavimas projektas, kuriame atlikti 5 testai naudojant VisualStudio integruotą testavimo sistemą; pridėta projekto [HTML dokumentacija](https://github.com/guscila/objektinis2/tree/v2.0/v0.1-naujas/html) ir LaTeX dokumentacija [PDF](https://github.com/guscila/objektinis2/blob/v2.0/v0.1-naujas/latex/2lab__LATEX_dokumentacija.pdf) formatu.
-
+Versija v1.5 optimizuota; sukurtas ir pridėtas UnitTestTestavimas projektas, kuriame atlikti 5 sėkmingi testai naudojant VisualStudio integruotą testavimo sistemą; pridėta projekto [HTML dokumentacija](https://github.com/guscila/objektinis2/tree/v2.0/v0.1-naujas/html) ir LaTeX dokumentacija [PDF](https://github.com/guscila/objektinis2/blob/v2.0/v0.1-naujas/latex/2lab__LATEX_dokumentacija.pdf) formatu; sutvarkyti ir atnaujinti `CMakeLists.txt` ir `run.bat` failai.
 <details>
  <summary><strong> UnitTestTestavimas </strong></summary>
- 
-### UnitTestTestavimas:
+
+### UnitTestTestavimas
+#### Atlikti testai:
 * DefaultConstructor - Studento klasės bazinio konstruktoriaus testas
 * ParametrizedConstructor - parametruoto konstruktoriaus testas
 * CopyConstructor - kopijavimo konstruktoriaus testas
 * CopyAssignment - kopijavimo priskyrimo operatoriaus testas
 * Getters - geterių testas
-### UnitTestTestavimo rezultatai:
+#### Testavimo kodas
+[UnitTestTestavimas](https://github.com/guscila/objektinis2/blob/v2.0/UnitTestTestavimas/UnitTestTestavimas.cpp)
+#### UnitTestTestavimas rezultatai:
 ![UnitTestTestavimoRezultatai](foto/UnitTesting.png)
-
 </details>
 
 ## Programos failai
