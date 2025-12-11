@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 #include "zmogus.h"
 
 class Studentas : public Zmogus {   // derived Studentas klasė
@@ -47,6 +48,12 @@ public:
         egzas_ = 0;
         rez_ = 0.0f;
         mediana_ = 0.0f;
+    }
+
+    std::string output() const {
+        std::ostringstream os;
+        os << *this;
+        return os.str();
     }
 
     // Geter'iai:
